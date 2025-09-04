@@ -40,9 +40,9 @@ int main(void)
             break;
         }
 
-        LOG_INF("Loading g_model_spec");
+        LOG_INF("Loading model_spec");
         // load model structure
-        status = model_load_struct((uint8_t *)&g_model_spec, sizeof(model_spec_t));
+        status = model_load_struct((uint8_t *)&model_spec, sizeof(model_spec_t));
         BREAK_ON_ERROR_LOG(status, "Model struct load error 0x%x (%s)", status, get_status_str(status));
 
         LOG_INF("Loading model_data");
