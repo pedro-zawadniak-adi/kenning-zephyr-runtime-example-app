@@ -1,11 +1,15 @@
 /.west
+/.venv
 /build
+/channel*
 /dlpack
 /iree
 /kenning-zephyr-runtime
 /modules
 /renode-latest.pkg.tar.xz
+/renode_latest
 /tvm
+/zephelin
 /zephyr
 /tflite-micro
 /.kenning
