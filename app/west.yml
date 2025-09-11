@@ -22,10 +22,15 @@ manifest:
 
     - name: zephyr
       remote: zephyrproject-rtos
-      revision: main
+      revision: 732a3a5c66553969ea01bacec19e2820b9d6b2e2
       import:
         path-allowlist:
           - modules/debug/*
           - modules/hal/*
           - modules/lib/*
           - modules/tee/tf-m/*
+
+    - name: zephelin
+      remote: antmicro
+      revision: main
+      import: true

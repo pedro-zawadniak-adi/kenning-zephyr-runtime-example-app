@@ -12,6 +12,10 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
+#if defined(CONFIG_ZPL)
+#include <zpl.h>
+#endif
+
 LOG_MODULE_REGISTER(app, CONFIG_APP_LOG_LEVEL);
 
 #define ITER_EVAL_INTERVAL_MS 2000
@@ -28,6 +32,10 @@ int main(void)
     int64_t timer_end = 0;
     int64_t timer_iterations = 0;
     int32_t iterations = 0;
+
+#if defined(CONFIG_ZPL)
+    zpl_init();
+#endif
 
     do
     {
