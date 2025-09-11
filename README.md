@@ -109,8 +109,7 @@ west build -t board-repl
 To run the app on a simulated platform, first download [Renode](https://github.com/renode/renode) portable (this step can be omitted in the Docker container):
 
 ```bash
-wget https://builds.renode.io/renode-latest.pkg.tar.xz
-export PYRENODE_PKG=`pwd`/renode-latest.pkg.tar.xz
+source kenning-zephyr-runtime/scripts/prepare_renode.sh
 ```
 
 To start the simulation, run:
@@ -120,3 +119,49 @@ python3 kenning-zephyr-runtime/scripts/run_renode.py --no-kcomm
 ```
 
 To stop the simulation, use `Ctrl-C`.
+
+### Profiling the app with Zephelin
+
+[Zephelin](https://antmicro.github.io/zephelin) is a library for profiling Zephyr applications.
+
+To use it, first, install dependencies and prepare modules:
+
+```bash
+python3 -m pip install -r zephelin/requirements.txt
+west forall -c "git reset HEAD --hard && git clean -fd"
+west patch -sm zephelin apply
+```
+
+Then, build the app with additional `zpl.conf` configuration file and a flag enabling tracing for a specific framework:
+
+```bash
+west build \
+  -p always \
+  -b max32690fthr/max32690/m4 app -- \
+  -DEXTRA_CONF_FILE="tflite.conf;zpl.conf" \
+  -DCONFIG_KENNING_MODEL_PATH=\"https://dl.antmicro.com/kenning/models/classification/magic_wand.h5\" \
+  -DCONFIG_ZPL_TFLM_PROFILER=y
+west build -t board-repl
+```
+
+If the platform is simulated, ensure [Renode](https://github.com/renode/renode) is prepared (this step is not required if you did it previously in the current environment):
+
+```bash
+source kenning-zephyr-runtime/scripts/prepare_renode.sh
+```
+
+For example, capturing the trace for 10 seconds can be using the following command:
+
+```bash
+python zephelin/scripts/run_renode.py --trace-output ./channel0_0 --timeout 10 --repl build/max32690fthr.repl
+```
+
+Using Zephelin CLI, you can create a [TEF](https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview?tab=t.0#heading=h.yr4qxyxotyw) trace from the output:
+
+```bash
+west zpl-prepare-trace ./channel0_0 \
+  --tflm-model-path build/modules/kenning-zephyr-runtime/lib/kenning_inference_lib/runtimes/tflite/generated/model.tflite \
+  -o ./tef_tflm_profiler.json
+```
+
+This trace can be visualized in [Zephelin Trace Viewer](https://github.com/antmicro/zephelin-trace-viewer).
