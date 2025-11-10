@@ -22,4 +22,4 @@ ENV ZEPHYR_SDK_INSTALL_DIR /opt/zephyr-sdk
 ENV ZEPHYR_SDK_PATH /opt/zephyr-sdk
 
 RUN $PIPINST \
-    "kenning[anomaly_detection,iree,tvm,tensorflow,tflite,torch,reports,renode,uart,auto_pytorch] @ git+https://github.com/antmicro/kenning.git"
+    "kenning[anomaly_detection,iree,tvm,tensorflow,tflite,torch,reports,renode,uart,auto_pytorch] @ git+https://github.com/antmicro/kenning.git@v0.8.0"
