@@ -4,5 +4,15 @@
     "build": {
         "context": "../..",
         "dockerfile": "../../environments/Dockerfile"
-    }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": ["${containerWorkspaceFolder}/edge-automl-extension-0.0.1.vsix"]
+        }
+    },
+    "runArgs": [
+        "--device", "/dev/ttyUSB0",
+        "--device", "/dev/ttyACM0",
+        "--privileged"
+    ]
 }
