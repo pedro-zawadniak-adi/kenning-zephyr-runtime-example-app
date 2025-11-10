@@ -14,9 +14,9 @@ RUN wget -O /tmp/requirements.txt https://raw.githubusercontent.com/zephyrprojec
     $PIPINST -r /tmp/requirements.txt && \
     wget -O /tmp/requirements.txt https://raw.githubusercontent.com/antmicro/kenning-zephyr-runtime/refs/heads/main/requirements.txt && \
     $PIPINST -r /tmp/requirements.txt && \
-    wget -O /tmp/requirements.txt https://raw.githubusercontent.com/antmicro/zephelin/refs/heads/main/requirements.txt && \
-    $PIPINST -r /tmp/requirements.txt && \
-    rm /tmp/requirements.txt
+    # wget -O /tmp/requirements.txt https://raw.githubusercontent.com/antmicro/zephelin/refs/heads/main/requirements.txt && \
+    # $PIPINST -r /tmp/requirements.txt && \
+    # rm /tmp/requirements.txt
 
 ENV ZEPHYR_SDK_INSTALL_DIR /opt/zephyr-sdk
 ENV ZEPHYR_SDK_PATH /opt/zephyr-sdk

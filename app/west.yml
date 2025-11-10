@@ -30,7 +30,7 @@ manifest:
           - modules/lib/*
           - modules/tee/tf-m/*
 
-    - name: zephelin
-      remote: antmicro
-      revision: main
-      import: true
+    # - name: zephelin
+    #   remote: antmicro
+    #   revision: main
+    #   import: true
