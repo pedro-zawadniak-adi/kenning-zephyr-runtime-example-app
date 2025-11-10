@@ -1,4 +1,4 @@
-FROM ghcr.io/antmicro/kenning-zephyr-runtime:latest
+FROM kenning-zephyr-runtime:stable
 
 
 RUN wget -O /tmp/prepare_zephyr_env.sh https://raw.githubusercontent.com/antmicro/kenning-zephyr-runtime/refs/heads/stable/scripts/prepare_zephyr_env.sh && \
