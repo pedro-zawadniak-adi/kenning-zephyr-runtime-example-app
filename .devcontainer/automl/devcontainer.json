@@ -9,10 +9,5 @@
 		"vscode": {
 			"extensions": ["AnalogDevices.automl-embedded"]
 		}
-	},
-	"runArgs": [
-        "--device", "/dev/ttyUSB0",
-        "--device", "/dev/ttyACM0",
-        "--privileged"
-    ]
+	}
 }
