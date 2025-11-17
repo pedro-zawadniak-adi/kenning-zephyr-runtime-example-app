@@ -13,7 +13,7 @@ manifest:
   projects:
     - name: zephyr
       remote: zephyrproject-rtos
-      revision: main
+      revision: d330e86e033f94c8b0a1a7a3be55c2553713a350
       import:
         path-allowlist:
           - modules/debug/*
@@ -23,7 +23,7 @@ manifest:
 
     - name: kenning-zephyr-runtime
       remote: antmicro
-      revision: main
+      revision: 79690c0cdf6d08703d2cb4a92e8607457a83937f
       import:
         path-allowlist:
           - dlpack
